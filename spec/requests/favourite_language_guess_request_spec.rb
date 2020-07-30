@@ -1,19 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe "FavouriteLanguageGuesses", type: :request do
-
-  describe "GET /index" do
+RSpec.describe "favourite language guessing", type: :request do
+  describe "GET /" do
     it "returns http success" do
-      get "/favourite_language_guess/index"
+      get '/'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /show" do
+  describe "GET /guess" do
     it "returns http success" do
-      get "/favourite_language_guess/show"
+      get '/guess'
       expect(response).to have_http_status(:success)
     end
   end
-
 end
