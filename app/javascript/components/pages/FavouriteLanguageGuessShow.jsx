@@ -3,16 +3,18 @@ import React from "react"
 import DefaultLayout from './layouts/DefaultLayout'
 
 import FavouriteLanguageGuessForm from '../FavouriteLanguageGuessForm'
-import FavouriteLanguage from '../FavouriteLanguage'
 import GithubUserCard from '../GithubUserCard'
 
-function FavouriteLanguageGuessShow({ language, github_user }) {
+function FavouriteLanguageGuessShow({ language, githubUser }) {
   return (
     <DefaultLayout>
       <h1>Guess results</h1>
 
-      <FavouriteLanguage language={language} username={github_user.username} />
-      <GithubUserCard {...github_user} />
+      <GithubUserCard username={githubUser.username}
+                      name={githubUser.name}
+                      avatarUrl={githubUser.avatar_url}
+                      bio={githubUser.bio}
+                      favouriteLanguage={language} />
 
       <h2>Try again?</h2>
       <FavouriteLanguageGuessForm />
