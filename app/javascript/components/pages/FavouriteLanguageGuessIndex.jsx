@@ -4,9 +4,9 @@ import DefaultLayout from './layouts/DefaultLayout'
 
 import FavouriteLanguageGuessForm from '../FavouriteLanguageGuessForm'
 
-function FavouriteLanguageGuessIndex() {
+function FavouriteLanguageGuessIndex({ alert }) {
   return (
-    <DefaultLayout>
+    <DefaultLayout alert={alert}>
       <h1>Favourite language guesser</h1>
       <FavouriteLanguageGuessForm />
     </DefaultLayout>
