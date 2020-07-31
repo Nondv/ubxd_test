@@ -15,6 +15,22 @@ Please implement the following design in HTML and CSS
 
 ![image](https://user-images.githubusercontent.com/2451896/89039063-5b810480-d339-11ea-8c61-64af95b3f457.png)
 
+## Usage
+
+- Yarn is needed for frontend.
+- Ruby 2.7.1 was used but without any specific features so older ones should be fine.
+
+```
+bundle
+yarn
+bundle exec rails s
+```
+
+Then just navigate to the root (probably https://localhost:3000)
+
+
+Tests can be run via `bundle exec rspec`. No frontend tests were written due to
+it being mostly just markup (except for `Alert` but who cares :D).
 
 ## Implementation
 
@@ -51,3 +67,5 @@ Guessing is literally just checking which language is most often used in user's 
 I decided that for a new app there's no point in distributing views' code between JS and rails view templates. The only thing views do is rendering ONE react component and passing props to it.
 
 I assume it slows down the frontend significantly but on the other hand the code is distributed much better and can be worked on separately (no erb/haml/slim and ruby knowledge needed really).
+
+Also, for state react hooks were used (there're none react component classes yay).
