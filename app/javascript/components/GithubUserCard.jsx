@@ -9,6 +9,7 @@ import './GithubUserCard.sass'
 function GithubUserCard({ username, name, bio, avatarUrl, favouriteLanguage }) {
   const nameElement = <div className='github-user-card__name'>{name}</div>;
   const usernameElement = <div className='github-user-card__username'>@{username}</div>;
+  const heartIcon = <FontAwesomeIcon icon={faHeart} color='pink' />;
 
   return (
     <div className='github-user-card'>
@@ -20,7 +21,7 @@ function GithubUserCard({ username, name, bio, avatarUrl, favouriteLanguage }) {
         <div className='github-user-card__header'>{nameElement} {usernameElement}</div>
         <div className='github-user-card__bio'>{bio}</div>
         <div className='github-user-card__favourite-language'>
-          <FontAwesomeIcon icon={faHeart} /> {favouriteLanguage}
+          {heartIcon} {favouriteLanguage} {heartIcon}
         </div>
       </div>
     </div>
