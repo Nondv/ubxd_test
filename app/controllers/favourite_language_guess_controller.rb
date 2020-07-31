@@ -13,8 +13,10 @@ class FavouriteLanguageGuessController < ApplicationController
       return redirect_to('/')
     end
     language = GuessFavouriteLanguage.call(repos)
+    github_user = FetchGithubUserByUsername.call(username)
 
     render :show, locals: { language: language,
-                            username: username }
+                            username: username,
+                            github_user: github_user.to_h }
   end
 end
