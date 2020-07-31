@@ -1,13 +1,15 @@
 import React from "react"
 
+import DefaultLayout from './layouts/DefaultLayout'
+
 import FavouriteLanguageGuessForm from '../FavouriteLanguageGuessForm'
 
 function FavouriteLanguageGuessIndex() {
   return (
-    <div>
+    <DefaultLayout>
       <h1>Favourite language guesser</h1>
       <FavouriteLanguageGuessForm />
-    </div>
+    </DefaultLayout>
   )
 }
 
