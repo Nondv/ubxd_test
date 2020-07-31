@@ -26,7 +26,15 @@ RSpec.describe "favourite language guessing", type: :request do
     end
 
     it 'redirects with error if user doesnt exist' do
-      allow(FetchPublicReposByUsername).to receive(:call) { raise FetchPublicReposByUsername::NotFoundError }
+      allow(FetchPublicReposByUsername).to receive(:call) { raise GithubApiErrors::NotFoundError }
+      get '/guess', params: { username: 'johny' }
+
+      expect(response).to redirect_to '/'
+      expect(flash.alert).to be_present
+    end
+
+    it 'redirects with an alert if github throws too many requests error' do
+      allow(FetchPublicReposByUsername).to receive(:call) { raise GithubApiErrors::TooManyRequestsError }
       get '/guess', params: { username: 'johny' }
 
       expect(response).to redirect_to '/'

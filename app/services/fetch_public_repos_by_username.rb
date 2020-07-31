@@ -2,7 +2,7 @@
 
 # returns a list of user's public repo and wraps them into `GithubRepo`
 class FetchPublicReposByUsername
-  class NotFoundError < StandardError; end
+  include GithubApiErrors
 
   def self.call(username, client = Octokit::Client.new)
     new(client).call(username)
@@ -14,8 +14,8 @@ class FetchPublicReposByUsername
 
   def call(username)
     client.repos(username).map { |r| GithubRepo.new(r) }
-  rescue Octokit::NotFound
-    raise NotFoundError
+  rescue StandardError => e
+    raise(map_octokit_error(e) || e)
   end
 
   private

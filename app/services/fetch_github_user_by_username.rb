@@ -2,7 +2,7 @@
 
 # `GithubUser`
 class FetchGithubUserByUsername
-  class NotFoundError < StandardError; end
+  include GithubApiErrors
 
   def self.call(username, client = Octokit::Client.new)
     new(client).call(username)
@@ -14,8 +14,8 @@ class FetchGithubUserByUsername
 
   def call(username)
     GithubUser.new(client.user(username))
-  rescue Octokit::NotFound
-    raise NotFoundError
+  rescue StandardError => e
+    raise(map_octokit_error(e) || e)
   end
 
   private
