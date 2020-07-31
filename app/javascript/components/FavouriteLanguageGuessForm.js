@@ -5,7 +5,7 @@ function FavouriteLanguageGuessForm() {
 
   return (
     <form action='/guess' method='GET'>
-      <label for='username'>Github username:</label>
+      <label htmlFor='username'>Github username:</label>
       <input type='text' name='username' value={username} onChange={e => setUsername(e.target.value)}  />
       <input type='submit' value='Guess' />
     </form>
