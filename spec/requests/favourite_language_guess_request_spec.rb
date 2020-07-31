@@ -6,6 +6,8 @@ RSpec.describe "favourite language guessing", type: :request do
       get '/'
       expect(response).to have_http_status(:success)
     end
+
+    pending 'displays error alerts'
   end
 
   describe "GET /guess" do
@@ -23,7 +25,12 @@ RSpec.describe "favourite language guessing", type: :request do
       get '/guess', params: { username: 'johny' }
     end
 
-    pending 'redirects with error if user doesnt exist'
-    pending 'shows error when cant guess?'
+    it 'redirects with error if user doesnt exist' do
+      allow(FetchPublicReposByUsername).to receive(:call) { raise FetchPublicReposByUsername::NotFoundError }
+      get '/guess', params: { username: 'johny' }
+
+      expect(response).to redirect_to '/'
+      expect(flash.alert).to be_present
+    end
   end
 end

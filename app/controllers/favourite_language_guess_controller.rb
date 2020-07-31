@@ -6,7 +6,12 @@ class FavouriteLanguageGuessController < ApplicationController
     username = params[:username].presence
     return redirect_to('/') unless username
 
-    repos = FetchPublicReposByUsername.call(username)
+    begin
+      repos = FetchPublicReposByUsername.call(username)
+    rescue FetchPublicReposByUsername::NotFoundError
+      flash.alert = "User #{username} not found"
+      return redirect_to('/')
+    end
     language = GuessFavouriteLanguage.call(repos)
 
     render :show, locals: { language: language,
